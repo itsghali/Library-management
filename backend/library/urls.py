@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     BookListView, BookCreateView, BookRetrieveUpdateDestroyView,
     BorrowListView, BorrowCreateView, BorrowRetrieveUpdateDestroyView,
-    ReservationListView, ReservationCreateView, ReservationRetrieveUpdateDestroyView
+    ReservationListView, ReservationCreateView, ReservationRetrieveUpdateDestroyView,
+    UserListView, UserCreateView, UserRetrieveUpdateDestroyView
 )
 
 urlpatterns = [
@@ -20,4 +21,10 @@ urlpatterns = [
     path('reservations/', ReservationListView.as_view(), name='reservation-list'),  # List all reservations
     path('reservations/create/', ReservationCreateView.as_view(), name='reservation-create'),  # Create a new reservation
     path('reservations/<int:pk>/', ReservationRetrieveUpdateDestroyView.as_view(), name='reservation-detail'),  # Retrieve, Update, or Delete a single reservation
+
+
+# Users (Admin only)
+    path('users/', UserListView.as_view(), name='user-list'),
+    path('users/create/', UserCreateView.as_view(), name='user-create'),
+    path('users/<int:pk>/', UserRetrieveUpdateDestroyView.as_view(), name='user-detail'),
 ]

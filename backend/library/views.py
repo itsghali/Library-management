@@ -1,6 +1,9 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .models import Book, Borrow, Reservation
-from .serializers import BookSerializer, BorrowSerializer, ReservationSerializer
+from .serializers import BookSerializer, BorrowSerializer, ReservationSerializer, UserRegisterSerializer
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
+
 
 
 # --- BOOK VIEWS ---
@@ -49,3 +52,22 @@ class ReservationCreateView(generics.CreateAPIView):
 class ReservationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()  # Get a reservation by pk
     serializer_class = ReservationSerializer  # Use the ReservationSerializer for detail, update, or delete
+
+
+# --- USER VIEWS ---
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]  # Only admin users can list users
+
+
+class UserCreateView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+    permission_classes = []  # Ou [AllowAny] si tu veux le rendre public
+
+
+class UserRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]

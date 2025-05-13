@@ -39,3 +39,6 @@ yarn-error.log*
 /.svn/**
 /.hg/**
 /.bzr/**
+
+__pycache__/
+*.pyc

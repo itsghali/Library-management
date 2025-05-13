@@ -28,3 +28,4 @@ urlpatterns = [
     path('api/', include('library.urls')),
     path('', redirect_to_api),  # This should handle the root URL
 ]
+

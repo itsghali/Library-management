@@ -14,9 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# D:\GHALI\3 AP\library_management\backend\library_management\urls.py
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.http import HttpResponseRedirect
+
+# Add a simple view for the root path
+def redirect_to_api(request):
+    return HttpResponseRedirect('/api/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('library.urls')),
+    path('', redirect_to_api),  # This should handle the root URL
 ]
+

@@ -53,7 +53,7 @@ const Register = () => {
     if (!validateForm()) return;
 
     try {
-      const response = await api.post('users/register/', {
+      const response = await api.post('/register/', {
         username: formData.username,
         email: formData.email,
         password: formData.password,
@@ -61,7 +61,7 @@ const Register = () => {
 
       // Si inscription réussie, redirige vers la page de connexion
       if (response.status === 201) {
-        navigate('/login');
+        navigate('/login/');
       }
     } catch (err) {
       if (err.response) {
@@ -138,7 +138,7 @@ const Register = () => {
         </div>
 
         <button type="submit" className="auth-button">
-          S'inscrire
+          S'inscrire 
         </button>
       </form>
 

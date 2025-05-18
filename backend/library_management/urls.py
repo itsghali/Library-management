@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
+from library.views import api_root
+
 
 # Add a simple view for the root path
 def redirect_to_api(request):
@@ -25,7 +27,7 @@ def redirect_to_api(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api_root, name='api-root'),     # DOIT venir avant include()
     path('api/', include('library.urls')),
-    path('', redirect_to_api),  # This should handle the root URL
+    path('', redirect_to_api),
 ]
-

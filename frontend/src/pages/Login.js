@@ -22,13 +22,13 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await api.post('users/login/', formData);
+      const response = await api.post('login/', formData);
       
       // Stockage du token (adapté à ton backend)
       localStorage.setItem('token', response.data.token || response.data.access);
       
       // Redirection vers le dashboard
-      navigate('/dashboard');
+      navigate('/dashboard/');
     } catch (err) {
       setError(err.response?.data?.detail || 'Échec de la connexion');
       console.error('Login error:', err);

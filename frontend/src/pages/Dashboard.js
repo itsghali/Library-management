@@ -13,10 +13,11 @@ const Dashboard = () => {
 
   const fetchUserData = async () => {
     try {
-      const [borrowRes, reservationRes] = await Promise.all([
-        axios.get('/borrow/'),
-        axios.get('/reservations/')
-      ]);
+      const borrowRes = await axios.get('http://localhost:8000/api/borrows/');
+      console.log('Raw borrow data:', borrowRes.data); // Debug log
+      
+      const reservationRes = await axios.get('http://localhost:8000/api/reservations/');
+      console.log('Raw reservation data:', reservationRes.data); // Debug log
 
       setBorrows(borrowRes.data);
       setReservations(reservationRes.data);
@@ -31,14 +32,20 @@ const Dashboard = () => {
   if (loading) return <p>Chargement...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
+
   return (
     <div>
       <h2>📖 Mes Emprunts</h2>
       {borrows.length > 0 ? (
         <ul>
           {borrows.map((item) => (
-            <li key={item.id}>
-              <strong>{item.book.title}</strong> – Emprunté le {item.borrow_date}
+            <li key={item.id} style={{ 
+            padding: '1rem',
+          }}>
+              <strong>Livre: {item.book}</strong>
+              <p><strong>Utilisateur</strong>: {item.user}</p>
+              <p><strong>Date d'emprunt</strong>: {new Date(item.borrow_date).toLocaleDateString()}</p>
+              <p><strong>Date de retour</strong>: {new Date(item.return_date).toLocaleDateString()}</p>
             </li>
           ))}
         </ul>
@@ -50,8 +57,12 @@ const Dashboard = () => {
       {reservations.length > 0 ? (
         <ul>
           {reservations.map((item) => (
-            <li key={item.id}>
-              <strong>{item.book.title}</strong> – Réservé le {item.reservation_date}
+            <li key={item.id} style={{ 
+            padding: '1rem',
+          }}>
+              <strong>Livre : {item.book_title}</strong>
+              <p><strong>Utilisateur</strong> : {item.user_name}</p>
+              <p><strong>Réservé le</strong>: {new Date(item.reserved_at).toLocaleDateString()}</p>
             </li>
           ))}
         </ul>

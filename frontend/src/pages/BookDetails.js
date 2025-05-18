@@ -22,7 +22,7 @@ const BookDetails = () => {
 
   const handleBorrow = async () => {
     try {
-      await axios.post('/borrow/', { book: id });
+      await axios.post('/borrows/', { book: id });
       setMessage('✅ Livre emprunté avec succès.');
     } catch (error) {
       console.error('Erreur lors de l\'emprunt:', error);

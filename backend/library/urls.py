@@ -3,10 +3,17 @@ from .views import (
     BookListView, BookCreateView, BookRetrieveUpdateDestroyView,
     BorrowListView, BorrowCreateView, BorrowRetrieveUpdateDestroyView,
     ReservationListView, ReservationCreateView, ReservationRetrieveUpdateDestroyView,
-    UserListView, UserCreateView, UserRetrieveUpdateDestroyView
+    UserListView, UserCreateView, UserRetrieveUpdateDestroyView,
+    LoginView, RegisterView, UserProfileView
 )
 
 urlpatterns = [
+
+    # Authentication
+    path('login/', LoginView.as_view(), name='login'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', UserProfileView.as_view(), name='user-profile'),
+
     # Books
     path('books/', BookListView.as_view(), name='book-list'),  # List all books
     path('books/create/', BookCreateView.as_view(), name='book-create'),  # Create a new book

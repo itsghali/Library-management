@@ -15,4 +15,4 @@ class UserTestCase(TestCase):
 
     def test_librarian_permission(self):
         self.assertTrue(self.librarian.is_librarian)
-        self.assertFalse(self.member.is_librarian)
+

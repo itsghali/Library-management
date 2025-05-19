@@ -17,5 +17,3 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('username', 'email', 'password1', 'password2', 'role'),
         }),
     )
-
-admin.site.register(User, CustomUserAdmin)

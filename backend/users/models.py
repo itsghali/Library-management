@@ -17,4 +17,4 @@ class User(AbstractUser):
 
     @property
     def is_librarian(self):
-        return self.role == self.Roles.LIBRARIAN
+

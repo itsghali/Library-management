@@ -155,7 +155,3 @@ git push origin feature/your-feature
 Submit a pull request with a clear description.
 Report issues via GitHub Issues.
 
-License
-MIT License. See LICENSE for details.
-
-⭐ Star this repo if you find it helpful!Contact: itsghali
